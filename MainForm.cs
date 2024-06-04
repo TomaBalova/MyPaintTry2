@@ -16,5 +16,24 @@ namespace MyPaintTry2
         {
             InitializeComponent();
         }
+
+        public Point A;
+        public Pen pen = new Pen(Color.Red, 2);
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            A = new Point(e.X, e.Y);
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            Graphics graf = pictureBox1.CreateGraphics();
+            graf.DrawLine(pen, A.X, A.Y, e.X, e.Y);
+        }
     }
 }
