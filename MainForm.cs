@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MyPaintTry2
 {
@@ -113,11 +114,17 @@ namespace MyPaintTry2
                     if (checkBoxFill.Checked) g.FillEllipse(brush, minX, minY, width, heigth);
                     g.DrawEllipse(pen, minX, minY, width, heigth);
                     break;
-                case Shapes.PaintBrush:
-                    break;
                 case Shapes.Image:
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        using (Bitmap bit = new Bitmap($@"{openFileDialog1.FileName}"))
+                        {
+                            g.DrawImage(bit, new Point(minX, minY));
+                        }
+                    }
                     break;
                 case Shapes.Text:
+                    g.DrawString(textBoxText.Text, new Font(comboBoxFontType.Text, (int)numericUpDownFontSize.Value), new SolidBrush(LineColor), minX, minY);
                     break;
                 default: break;
 
