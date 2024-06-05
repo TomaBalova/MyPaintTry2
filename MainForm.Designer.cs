@@ -253,6 +253,7 @@
             this.panelBGColor.Name = "panelBGColor";
             this.panelBGColor.Size = new System.Drawing.Size(34, 35);
             this.panelBGColor.TabIndex = 7;
+            this.panelBGColor.Click += new System.EventHandler(this.panelBGColor_Click);
             // 
             // panelFGColor
             // 
@@ -261,6 +262,7 @@
             this.panelFGColor.Name = "panelFGColor";
             this.panelFGColor.Size = new System.Drawing.Size(34, 35);
             this.panelFGColor.TabIndex = 6;
+            this.panelFGColor.Click += new System.EventHandler(this.panelFGColor_Click);
             // 
             // label1
             // 
@@ -279,6 +281,7 @@
             this.comboBoxHatchBrushes.Name = "comboBoxHatchBrushes";
             this.comboBoxHatchBrushes.Size = new System.Drawing.Size(121, 21);
             this.comboBoxHatchBrushes.TabIndex = 4;
+            this.comboBoxHatchBrushes.SelectedIndexChanged += new System.EventHandler(this.comboBoxHatchBrushes_SelectedIndexChanged);
             // 
             // labelLineThickness
             // 

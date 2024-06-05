@@ -123,7 +123,7 @@ namespace MyPaintTry2
 
             }
 
-            
+
             pictureBox1.Image = bitmap;
         }
 
@@ -171,6 +171,31 @@ namespace MyPaintTry2
         private void numericUpDownLineThickness_ValueChanged(object sender, EventArgs e)
         {
             pen.Width = (int)numericUpDownLineThickness.Value;
+        }
+
+        private void panelFGColor_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == colorDialog1.ShowDialog())
+            {
+                LineColor = colorDialog1.Color;
+                pen.Color = colorDialog1.Color;
+                panelFGColor.BackColor = LineColor;
+            }
+        }
+
+        private void panelBGColor_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == colorDialog1.ShowDialog())
+            {
+                FillColor = colorDialog1.Color;
+                toolsChange();
+                panelBGColor.BackColor = FillColor;
+            }
+        }
+
+        private void comboBoxHatchBrushes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            toolsChange();
         }
     }
 }
