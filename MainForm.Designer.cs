@@ -30,6 +30,7 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBoxLineType = new System.Windows.Forms.GroupBox();
+            this.radioButtonPaintBrush = new System.Windows.Forms.RadioButton();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.comboBoxFontType = new System.Windows.Forms.ComboBox();
             this.numericUpDownFontSize = new System.Windows.Forms.NumericUpDown();
@@ -41,7 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.checkBoxNoFill = new System.Windows.Forms.CheckBox();
+            this.checkBoxFill = new System.Windows.Forms.CheckBox();
             this.panelBGColor = new System.Windows.Forms.Panel();
             this.panelFGColor = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.radioButtonPaintBrush = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBoxLineType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFontSize)).BeginInit();
@@ -93,6 +93,18 @@
             this.groupBoxLineType.TabIndex = 1;
             this.groupBoxLineType.TabStop = false;
             this.groupBoxLineType.Text = "Вид линии";
+            // 
+            // radioButtonPaintBrush
+            // 
+            this.radioButtonPaintBrush.AutoSize = true;
+            this.radioButtonPaintBrush.Location = new System.Drawing.Point(117, 44);
+            this.radioButtonPaintBrush.Name = "radioButtonPaintBrush";
+            this.radioButtonPaintBrush.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonPaintBrush.TabIndex = 9;
+            this.radioButtonPaintBrush.TabStop = true;
+            this.radioButtonPaintBrush.Text = "Кисть";
+            this.radioButtonPaintBrush.UseVisualStyleBackColor = true;
+            this.radioButtonPaintBrush.CheckedChanged += new System.EventHandler(this.radioButtonPaintBrush_CheckedChanged);
             // 
             // textBoxText
             // 
@@ -192,7 +204,7 @@
             // 
             this.panel1.Controls.Add(this.buttonClear);
             this.panel1.Controls.Add(this.buttonBack);
-            this.panel1.Controls.Add(this.checkBoxNoFill);
+            this.panel1.Controls.Add(this.checkBoxFill);
             this.panel1.Controls.Add(this.panelBGColor);
             this.panel1.Controls.Add(this.panelFGColor);
             this.panel1.Controls.Add(this.label1);
@@ -223,15 +235,15 @@
             this.buttonBack.Text = "Назад";
             this.buttonBack.UseVisualStyleBackColor = true;
             // 
-            // checkBoxNoFill
+            // checkBoxFill
             // 
-            this.checkBoxNoFill.AutoSize = true;
-            this.checkBoxNoFill.Location = new System.Drawing.Point(14, 333);
-            this.checkBoxNoFill.Name = "checkBoxNoFill";
-            this.checkBoxNoFill.Size = new System.Drawing.Size(90, 17);
-            this.checkBoxNoFill.TabIndex = 8;
-            this.checkBoxNoFill.Text = "Не заливать";
-            this.checkBoxNoFill.UseVisualStyleBackColor = true;
+            this.checkBoxFill.AutoSize = true;
+            this.checkBoxFill.Location = new System.Drawing.Point(14, 333);
+            this.checkBoxFill.Name = "checkBoxFill";
+            this.checkBoxFill.Size = new System.Drawing.Size(109, 17);
+            this.checkBoxFill.TabIndex = 8;
+            this.checkBoxFill.Text = "Заливка цветом";
+            this.checkBoxFill.UseVisualStyleBackColor = true;
             // 
             // panelBGColor
             // 
@@ -293,6 +305,7 @@
             0,
             0,
             0});
+            this.numericUpDownLineThickness.ValueChanged += new System.EventHandler(this.numericUpDownLineThickness_ValueChanged);
             // 
             // menuStrip1
             // 
@@ -335,18 +348,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // radioButtonPaintBrush
-            // 
-            this.radioButtonPaintBrush.AutoSize = true;
-            this.radioButtonPaintBrush.Location = new System.Drawing.Point(117, 44);
-            this.radioButtonPaintBrush.Name = "radioButtonPaintBrush";
-            this.radioButtonPaintBrush.Size = new System.Drawing.Size(55, 17);
-            this.radioButtonPaintBrush.TabIndex = 9;
-            this.radioButtonPaintBrush.TabStop = true;
-            this.radioButtonPaintBrush.Text = "Кисть";
-            this.radioButtonPaintBrush.UseVisualStyleBackColor = true;
-            this.radioButtonPaintBrush.CheckedChanged += new System.EventHandler(this.radioButtonPaintBrush_CheckedChanged);
             // 
             // MainForm
             // 
@@ -395,7 +396,7 @@
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxHatchBrushes;
-        private System.Windows.Forms.CheckBox checkBoxNoFill;
+        private System.Windows.Forms.CheckBox checkBoxFill;
         private System.Windows.Forms.Panel panelBGColor;
         private System.Windows.Forms.Panel panelFGColor;
         private System.Windows.Forms.ColorDialog colorDialog1;

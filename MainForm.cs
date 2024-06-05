@@ -91,6 +91,42 @@ namespace MyPaintTry2
             }
         }
 
+        private void drawingShape(Point endPoint)
+        {
+            //toolsChange();
+            int width = Math.Abs(endPoint.X - startPoint.X);
+            int heigth = Math.Abs(endPoint.Y - startPoint.Y);
+
+            int minX = Math.Min(startPoint.X, endPoint.X);
+            int minY = Math.Min(startPoint.Y, endPoint.Y);
+
+            switch (shape)
+            {
+                case Shapes.Line:
+                    g.DrawLine(pen, startPoint.X, startPoint.Y, endPoint.X, endPoint.Y);
+                    break;
+                case Shapes.Rectangle:
+                    if (checkBoxFill.Checked) g.FillRectangle(brush, minX, minY, width, heigth);
+                    g.DrawRectangle(pen, minX, minY, width, heigth);
+                    break;
+                case Shapes.Ellipse:
+                    if (checkBoxFill.Checked) g.FillEllipse(brush, minX, minY, width, heigth);
+                    g.DrawEllipse(pen, minX, minY, width, heigth);
+                    break;
+                case Shapes.PaintBrush:
+                    break;
+                case Shapes.Image:
+                    break;
+                case Shapes.Text:
+                    break;
+                default: break;
+
+            }
+
+            
+            pictureBox1.Image = bitmap;
+        }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = new Point(e.X, e.Y);
@@ -98,9 +134,8 @@ namespace MyPaintTry2
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            toolsChange();
-            g.DrawLine(pen, startPoint.X, startPoint.Y, e.X, e.Y);
-            pictureBox1.Image = bitmap;
+            Point p = new Point(e.X, e.Y);
+            drawingShape(p);
         }
 
         private void radioButtonLine_CheckedChanged(object sender, EventArgs e)
@@ -131,6 +166,11 @@ namespace MyPaintTry2
         private void radioButtonText_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonText.Checked) shape = Shapes.Text;
+        }
+
+        private void numericUpDownLineThickness_ValueChanged(object sender, EventArgs e)
+        {
+            pen.Width = (int)numericUpDownLineThickness.Value;
         }
     }
 }
