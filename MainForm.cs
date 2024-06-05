@@ -92,9 +92,17 @@ namespace MyPaintTry2
             }
         }
 
+        private void сlearMemory()
+        {
+            foreach (var item in history)
+            {
+                item.Dispose();
+            }
+            history.Clear();
+        }
+
         private void drawingShape(Point endPoint)
         {
-            //toolsChange();
             int width = Math.Abs(endPoint.X - startPoint.X);
             int heigth = Math.Abs(endPoint.Y - startPoint.Y);
 
@@ -137,6 +145,7 @@ namespace MyPaintTry2
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             startPoint = new Point(e.X, e.Y);
+            history.Push(new Bitmap(bitmap));
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -203,6 +212,54 @@ namespace MyPaintTry2
         private void comboBoxHatchBrushes_SelectedIndexChanged(object sender, EventArgs e)
         {
             toolsChange();
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bitmap = new Bitmap(history.Pop());
+                g = Graphics.FromImage(bitmap);
+                pictureBox1.Image = bitmap;
+            }
+            catch (Exception ex)
+            {
+                сlearMemory();
+            }
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            g.Clear(Color.White);
+            pictureBox1.Image = bitmap;
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InitalizeTools();
+            сlearMemory();
+            history = new Stack<Bitmap>();
+            pictureBox1.Image = bitmap;
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (var bit = new Bitmap($@"{openFileDialog1.FileName}"))
+                {
+                    bitmap = new Bitmap(bit);
+                }
+
+                g = Graphics.FromImage(bitmap);
+                pictureBox1.Image = bitmap;
+            }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+            bitmap.Save($@"{saveFileDialog1.FileName}.png", ImageFormat.Png);
         }
     }
 }
